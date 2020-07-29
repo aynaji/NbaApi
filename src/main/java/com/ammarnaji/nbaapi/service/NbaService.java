@@ -12,7 +12,9 @@ public class NbaService {
     private final WebClient webClient;
 
     public NbaService(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("https://free-nba.p.rapidapi.com").defaultHeader("x-rapidapi-key", "92db3be041msh927a40d36b202bfp18ae92jsnbe3ed84e90dd").build();
+        this.webClient = webClientBuilder
+                .baseUrl("https://free-nba.p.rapidapi.com")
+                .defaultHeader("x-rapidapi-key", "92db3be041msh927a40d36b202bfp18ae92jsnbe3ed84e90dd").build();
     }
 
     public Mono<GameDTO> getAllGames() {

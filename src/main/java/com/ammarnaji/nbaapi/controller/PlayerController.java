@@ -2,8 +2,6 @@ package com.ammarnaji.nbaapi.controller;
 
 import com.ammarnaji.nbaapi.model.Player;
 import com.ammarnaji.nbaapi.model.PlayerDTO;
-import com.ammarnaji.nbaapi.model.Team;
-import com.ammarnaji.nbaapi.model.TeamDTO;
 import com.ammarnaji.nbaapi.service.NbaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -16,8 +14,11 @@ import reactor.core.publisher.Mono;
 
 public class PlayerController {
 
-    @Autowired
-    NbaService nbaService;
+    private final NbaService nbaService;
+
+    public PlayerController(NbaService nbaService) {
+        this.nbaService = nbaService;
+    }
 
     @Cacheable("allPlayers")
     @GetMapping("/players")

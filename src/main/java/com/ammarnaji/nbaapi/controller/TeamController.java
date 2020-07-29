@@ -1,6 +1,5 @@
 package com.ammarnaji.nbaapi.controller;
 
-import com.ammarnaji.nbaapi.model.PlayerDTO;
 import com.ammarnaji.nbaapi.model.Team;
 import com.ammarnaji.nbaapi.model.TeamDTO;
 import com.ammarnaji.nbaapi.service.NbaService;
@@ -14,8 +13,11 @@ import reactor.core.publisher.Mono;
 @RestController
 public class TeamController {
 
-    @Autowired
-    NbaService nbaService;
+    private final NbaService nbaService;
+
+    public TeamController(NbaService nbaService) {
+        this.nbaService = nbaService;
+    }
 
     @Cacheable("allTeams")
     @GetMapping("/teams")
