@@ -3,7 +3,6 @@ package com.ammarnaji.nbaapi.controller;
 import com.ammarnaji.nbaapi.model.Game;
 import com.ammarnaji.nbaapi.model.GameDTO;
 import com.ammarnaji.nbaapi.service.NbaService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,8 +13,11 @@ import reactor.core.publisher.Mono;
 @RestController
 public class GamesController {
 
-    @Autowired
-    NbaService nbaService;
+    private final NbaService nbaService;
+
+    public GamesController(NbaService nbaService) {
+        this.nbaService = nbaService;
+    }
 
     @GetMapping("/")
     public ModelAndView userInformation(){
